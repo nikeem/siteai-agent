@@ -358,9 +358,8 @@
   /* Фон в стиле Telegram с паттерном */
   .siteai-chat-container {
     background:
-      url('/chat-background.jpg') center / 100% auto no-repeat,
+      url('/chat-background.jpg') center / cover no-repeat,
       #1a1a1a;
-    background-attachment: fixed;
   }
 
   .siteai-chat-header {

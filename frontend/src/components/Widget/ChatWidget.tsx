@@ -5,16 +5,15 @@ import './ChatWidget.css';
 
 interface ChatWidgetProps {
   siteId?: string;
-  autoOpen?: boolean;
 }
 
-export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId, autoOpen = false }) => {
-  const [isOpen, setIsOpen] = useState(autoOpen);
+export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [settings, setSettings] = useState<AgentSettings | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Загрузка настроек при монтировании
   useEffect(() => {
@@ -47,6 +46,14 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId, autoOpen = false
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  // Автоматическое увеличение высоты textarea
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [inputValue]);
+
   const handleSendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
 
@@ -60,6 +67,11 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId, autoOpen = false
     setMessages((prev) => [...prev, userMessage]);
     setInputValue('');
     setIsLoading(true);
+
+    // Сбрасываем высоту textarea
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+    }
 
     try {
       const response = await apiService.sendMessage(inputValue, messages);
@@ -96,83 +108,88 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId, autoOpen = false
   };
 
   if (!settings) {
-    return null;
+    return (
+      <div className="siteai-loading-container">
+        <div className="siteai-loading-spinner"></div>
+      </div>
+    );
   }
 
   return (
-    <>
-      {/* Кнопка открытия чата */}
-      {!isOpen && (
-        <button
-          className="siteai-widget-toggle"
-          onClick={() => setIsOpen(true)}
-          style={{ backgroundColor: settings.primaryColor }}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
-          </svg>
-        </button>
-      )}
-
-      {/* Окно чата */}
-      {isOpen && (
-        <div className={`siteai-widget-container siteai-position-${settings.widgetPosition}`}>
-          <div className="siteai-widget-header" style={{ backgroundColor: settings.primaryColor }}>
-            <h3>Консультант</h3>
-            <button onClick={() => setIsOpen(false)} className="siteai-close-btn">
-              ×
-            </button>
+    <div className="siteai-chat-container">
+      {/* Заголовок */}
+      <div className="siteai-chat-header" style={{ backgroundColor: settings.primaryColor }}>
+        <div className="siteai-header-content">
+          <div className="siteai-avatar">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+            </svg>
           </div>
-
-          <div className="siteai-widget-messages">
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`siteai-message siteai-message-${message.role}`}
-              >
-                <div className="siteai-message-content">{message.content}</div>
-                <div className="siteai-message-time">
-                  {new Date(message.timestamp).toLocaleTimeString('ru-RU', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  })}
-                </div>
-              </div>
-            ))}
-            {isLoading && (
-              <div className="siteai-message siteai-message-assistant">
-                <div className="siteai-typing-indicator">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
-          </div>
-
-          <div className="siteai-widget-input">
-            <textarea
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Введите сообщение..."
-              rows={1}
-              disabled={isLoading}
-            />
-            <button
-              onClick={handleSendMessage}
-              disabled={!inputValue.trim() || isLoading}
-              className="siteai-send-btn"
-              style={{ backgroundColor: settings.primaryColor }}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-              </svg>
-            </button>
+          <div className="siteai-header-info">
+            <h3>AI Консультант</h3>
+            <p className="siteai-status">В сети</p>
           </div>
         </div>
-      )}
-    </>
+      </div>
+
+      {/* Область сообщений */}
+      <div className="siteai-chat-messages">
+        {messages.map((message) => (
+          <div
+            key={message.id}
+            className={`siteai-message siteai-message-${message.role}`}
+          >
+            <div className="siteai-message-content">{message.content}</div>
+            <div className="siteai-message-time">
+              {new Date(message.timestamp).toLocaleTimeString('ru-RU', {
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
+            </div>
+          </div>
+        ))}
+        {isLoading && (
+          <div className="siteai-message siteai-message-assistant">
+            <div className="siteai-typing-indicator">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        )}
+        <div ref={messagesEndRef} />
+      </div>
+
+      {/* Область ввода */}
+      <div className="siteai-chat-input-container">
+        <div className="siteai-input-wrapper">
+          <textarea
+            ref={textareaRef}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Отправьте сообщение..."
+            rows={1}
+            disabled={isLoading}
+            className="siteai-textarea"
+          />
+          <button
+            onClick={handleSendMessage}
+            disabled={!inputValue.trim() || isLoading}
+            className="siteai-send-button"
+            style={{
+              backgroundColor: !inputValue.trim() || isLoading ? '#ccc' : settings.primaryColor,
+            }}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+            </svg>
+          </button>
+        </div>
+        <div className="siteai-input-footer">
+          <p>Powered by SiteAI</p>
+        </div>
+      </div>
+    </div>
   );
 };

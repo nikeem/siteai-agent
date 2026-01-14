@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  # Backend (Python)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: siteai-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:password@db:5432/siteai
+      - REDIS_URL=redis://redis:6379/0
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./backend:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - siteai-network
+
+  # Frontend (Node.js)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: siteai-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev -- --host
+    environment:
+      - VITE_API_URL=http://localhost:8000/api/v1
+    networks:
+      - siteai-network
+
+  # PostgreSQL Database (опционально)
+  db:
+    image: postgres:15-alpine
+    container_name: siteai-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=siteai
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - siteai-network
+
+  # Redis (опционально)
+  redis:
+    image: redis:7-alpine
+    container_name: siteai-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - siteai-network
+
+volumes:
+  postgres_data:
+
+networks:
+  siteai-network:
+    driver: bridge

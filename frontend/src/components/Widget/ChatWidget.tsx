@@ -140,7 +140,6 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
             <img
               src="https://sun9-35.userapi.com/s/v1/ig2/soXHYrR-I17TEApVWudWS7rkN4mdHJtjQr7ZajkfNhBeXyy0vcV-4SfA7g7T1Pbn2_-gn_mBAElN5RVyS781X4Fd.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&from=bu&cs=1080x0"
               alt="Александр"
-              style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }}
             />
           </div>
           <div className="siteai-header-info">

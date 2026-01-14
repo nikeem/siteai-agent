@@ -134,7 +134,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
   return (
     <div className="siteai-chat-container">
       {/* Заголовок */}
-      <div className="siteai-chat-header" style={{ backgroundColor: settings.primaryColor }}>
+      <div className="siteai-chat-header">
         <div className="siteai-header-content">
           <div className="siteai-avatar">
             <img
@@ -195,9 +195,6 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
             onClick={handleSendMessage}
             disabled={!inputValue.trim() || isLoading}
             className="siteai-send-button"
-            style={{
-              backgroundColor: !inputValue.trim() || isLoading ? '#ccc' : settings.primaryColor,
-            }}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
               <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />

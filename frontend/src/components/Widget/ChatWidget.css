@@ -47,9 +47,8 @@
 /* Header */
 .siteai-chat-header {
   padding: 24px;
-  background: rgba(24, 24, 24, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  background: #0a0a0a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
 }
 
@@ -359,9 +358,8 @@
 
   .siteai-chat-header {
     padding: 12px 16px;
-    background: rgba(24, 24, 24, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background: #0a0a0a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     border-top: none;
   }
 

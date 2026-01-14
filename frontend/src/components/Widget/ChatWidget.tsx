@@ -14,6 +14,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId }) => {
   const [settings, setSettings] = useState<AgentSettings | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   // Загрузка настроек при монтировании
   useEffect(() => {
@@ -43,7 +44,9 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId }) => {
 
   // Автопрокрутка к новым сообщениям
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
   }, [messages]);
 
   // Автоматическое увеличение высоты textarea
@@ -135,7 +138,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId }) => {
       </div>
 
       {/* Область сообщений */}
-      <div className="siteai-chat-messages">
+      <div className="siteai-chat-messages" ref={messagesContainerRef}>
         {messages.map((message) => (
           <div
             key={message.id}

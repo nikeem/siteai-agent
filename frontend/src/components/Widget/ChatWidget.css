@@ -308,33 +308,8 @@
   margin-top: 12px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 12px;
-}
-
-.siteai-clear-button {
-  background: transparent;
-  border: none;
-  color: #606060;
-  font-size: 11px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  letter-spacing: 0.5px;
-}
-
-.siteai-clear-button:hover:not(:disabled) {
-  color: #d4af37;
-  background: rgba(212, 175, 55, 0.08);
-}
-
-.siteai-clear-button:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
 }
 
 .siteai-input-footer p {

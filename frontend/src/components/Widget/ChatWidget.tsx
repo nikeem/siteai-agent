@@ -27,8 +27,13 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
         const agentSettings = await apiService.getSettings();
         setSettings(agentSettings);
 
-        // Добавляем приветственное сообщение ТОЛЬКО если нет сохранённых сообщений
-        if (agentSettings.welcomeMessage && messages.length === 0) {
+        // Проверяем localStorage напрямую, не полагаясь на состояние
+        const hasStoredMessages = localStorage.getItem(storageKey);
+        console.log('🔍 Проверка localStorage:', hasStoredMessages ? 'Есть сохранённые сообщения' : 'Нет сохранённых сообщений');
+
+        // Добавляем приветственное сообщение ТОЛЬКО если в localStorage нет сообщений
+        if (agentSettings.welcomeMessage && !hasStoredMessages) {
+          console.log('✅ Добавляем приветственное сообщение');
           setMessages([
             {
               id: 'welcome',
@@ -37,6 +42,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
               timestamp: new Date(),
             },
           ]);
+        } else {
+          console.log('⏭️ Пропускаем приветственное сообщение, есть сохранённые сообщения');
         }
       } catch (error) {
         console.error('Failed to load settings:', error);
@@ -44,6 +51,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
     };
 
     loadSettings();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [siteId]);
 
   // Автопрокрутка к новым сообщениям

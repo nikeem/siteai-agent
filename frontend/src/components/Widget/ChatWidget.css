@@ -401,6 +401,7 @@
     max-width: 85%;
     font-size: 15px;
     padding: 10px 14px;
+    text-align: left;
   }
 
   .siteai-message-user .siteai-message-content {

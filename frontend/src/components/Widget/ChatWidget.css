@@ -168,6 +168,7 @@
   padding: 16px 20px;
   border-radius: 16px;
   word-wrap: break-word;
+  white-space: pre-wrap;
   line-height: 1.6;
   font-size: 15px;
 }
@@ -419,6 +420,7 @@
     font-size: 15px;
     padding: 10px 14px;
     text-align: left;
+    white-space: pre-wrap;
   }
 
   .siteai-message-user .siteai-message-content {

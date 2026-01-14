@@ -27,8 +27,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
         const agentSettings = await apiService.getSettings();
         setSettings(agentSettings);
 
-        // Добавляем приветственное сообщение
-        if (agentSettings.welcomeMessage) {
+        // Добавляем приветственное сообщение ТОЛЬКО если нет сохранённых сообщений
+        if (agentSettings.welcomeMessage && messages.length === 0) {
           setMessages([
             {
               id: 'welcome',
@@ -71,7 +71,11 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
       timestamp: new Date(),
     };
 
-    setMessages((prev) => [...prev, userMessage]);
+    // Сначала обновляем сообщения с сообщением пользователя
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
+
+    const messageText = inputValue; // Сохраняем текст до очистки
     setInputValue('');
     setIsLoading(true);
 
@@ -81,7 +85,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
     }
 
     try {
-      const response = await apiService.sendMessage(inputValue, messages);
+      // Передаём обновлённый список сообщений
+      const response = await apiService.sendMessage(messageText, updatedMessages);
 
       const assistantMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),

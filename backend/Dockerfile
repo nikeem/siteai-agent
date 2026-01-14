@@ -9,8 +9,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Копирование кода
 COPY . .
 
-# Сделать start.sh исполняемым
-RUN chmod +x start.sh
-
-# Запуск
-CMD ["./start.sh"]
+# Запуск через Python скрипт
+CMD ["python", "start.py"]

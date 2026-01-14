@@ -29,7 +29,7 @@
   max-width: 550px;
   height: 700px;
   background:
-    url('/chat-background.jpg') center / contain no-repeat,
+    url('/chat-background.jpg') center / 100% auto no-repeat,
     linear-gradient(135deg, #1a1a1a 0%, #141414 100%);
   border-radius: 20px;
   box-shadow:
@@ -358,7 +358,7 @@
   /* Фон в стиле Telegram с паттерном */
   .siteai-chat-container {
     background:
-      url('/chat-background.jpg') center / contain no-repeat,
+      url('/chat-background.jpg') center / 100% auto no-repeat,
       #1a1a1a;
     background-attachment: fixed;
   }

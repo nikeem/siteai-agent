@@ -121,12 +121,14 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId }) => {
       <div className="siteai-chat-header" style={{ backgroundColor: settings.primaryColor }}>
         <div className="siteai-header-content">
           <div className="siteai-avatar">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-            </svg>
+            <img
+              src="https://sun9-35.userapi.com/s/v1/ig2/soXHYrR-I17TEApVWudWS7rkN4mdHJtjQr7ZajkfNhBeXyy0vcV-4SfA7g7T1Pbn2_-gn_mBAElN5RVyS781X4Fd.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&from=bu&cs=1080x0"
+              alt="Александр"
+              style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }}
+            />
           </div>
           <div className="siteai-header-info">
-            <h3>AI Консультант</h3>
+            <h3>Александр</h3>
             <p className="siteai-status">В сети</p>
           </div>
         </div>

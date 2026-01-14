@@ -73,6 +73,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
 
     // Сначала обновляем сообщения с сообщением пользователя
     const updatedMessages = [...messages, userMessage];
+    console.log('💬 Добавляем сообщение пользователя:', userMessage);
+    console.log('💬 Обновлённый список:', updatedMessages);
     setMessages(updatedMessages);
 
     const messageText = inputValue; // Сохраняем текст до очистки
@@ -95,7 +97,14 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
         timestamp: new Date(),
       };
 
-      setMessages((prev) => [...prev, assistantMessage]);
+      console.log('🤖 Добавляем ответ агента:', assistantMessage);
+      console.log('🤖 Текущие сообщения перед добавлением:', messages);
+
+      setMessages((prev) => {
+        const newMessages = [...prev, assistantMessage];
+        console.log('🤖 Новый список сообщений:', newMessages);
+        return newMessages;
+      });
     } catch (error) {
       console.error('Failed to send message:', error);
 

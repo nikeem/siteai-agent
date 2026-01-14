@@ -30,19 +30,24 @@ export function useLocalStorage<T>(
   const setValue = useCallback(
     (value: T | ((prev: T) => T)) => {
       try {
-        // Поддерживаем функциональное обновление (как в useState)
-        const valueToStore = value instanceof Function ? value(storedValue) : value;
+        // Используем функциональное обновление useState для работы с актуальным значением
+        setStoredValue((currentValue) => {
+          const valueToStore = value instanceof Function ? value(currentValue) : value;
 
-        setStoredValue(valueToStore);
+          console.log(`💾 [${key}] Сохраняем в localStorage:`, valueToStore);
 
-        if (typeof window !== 'undefined') {
-          window.localStorage.setItem(key, JSON.stringify(valueToStore));
-        }
+          if (typeof window !== 'undefined') {
+            window.localStorage.setItem(key, JSON.stringify(valueToStore));
+            console.log(`💾 [${key}] Успешно сохранено!`);
+          }
+
+          return valueToStore;
+        });
       } catch (error) {
         console.error(`Ошибка записи в localStorage (ключ: ${key}):`, error);
       }
     },
-    [key, storedValue]
+    [key] // Убрали storedValue из зависимостей!
   );
 
   // Функция удаления значения из localStorage

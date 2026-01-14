@@ -14,24 +14,14 @@ export function useLocalStorage<T>(
   // Получаем значение из localStorage или используем начальное
   const [storedValue, setStoredValue] = useState<T>(() => {
     if (typeof window === 'undefined') {
-      console.log(`💾 [${key}] window is undefined, using initial value`);
       return initialValue;
     }
 
     try {
       const item = window.localStorage.getItem(key);
-      console.log(`💾 [${key}] Загрузка из localStorage:`, item);
-
-      if (item) {
-        const parsed = JSON.parse(item);
-        console.log(`💾 [${key}] Распарсено:`, parsed);
-        return parsed;
-      }
-
-      console.log(`💾 [${key}] Пусто, используем initial value`);
-      return initialValue;
+      return item ? JSON.parse(item) : initialValue;
     } catch (error) {
-      console.error(`💾 [${key}] Ошибка чтения из localStorage:`, error);
+      console.error(`Ошибка чтения из localStorage (ключ: ${key}):`, error);
       return initialValue;
     }
   });
@@ -44,11 +34,8 @@ export function useLocalStorage<T>(
         setStoredValue((currentValue) => {
           const valueToStore = value instanceof Function ? value(currentValue) : value;
 
-          console.log(`💾 [${key}] Сохраняем в localStorage:`, valueToStore);
-
           if (typeof window !== 'undefined') {
             window.localStorage.setItem(key, JSON.stringify(valueToStore));
-            console.log(`💾 [${key}] Успешно сохранено!`);
           }
 
           return valueToStore;

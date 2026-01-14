@@ -29,11 +29,9 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
 
         // Проверяем localStorage напрямую, не полагаясь на состояние
         const hasStoredMessages = localStorage.getItem(storageKey);
-        console.log('🔍 Проверка localStorage:', hasStoredMessages ? 'Есть сохранённые сообщения' : 'Нет сохранённых сообщений');
 
         // Добавляем приветственное сообщение ТОЛЬКО если в localStorage нет сообщений
         if (agentSettings.welcomeMessage && !hasStoredMessages) {
-          console.log('✅ Добавляем приветственное сообщение');
           setMessages([
             {
               id: 'welcome',
@@ -42,8 +40,6 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
               timestamp: new Date(),
             },
           ]);
-        } else {
-          console.log('⏭️ Пропускаем приветственное сообщение, есть сохранённые сообщения');
         }
       } catch (error) {
         console.error('Failed to load settings:', error);
@@ -81,8 +77,6 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
 
     // Сначала обновляем сообщения с сообщением пользователя
     const updatedMessages = [...messages, userMessage];
-    console.log('💬 Добавляем сообщение пользователя:', userMessage);
-    console.log('💬 Обновлённый список:', updatedMessages);
     setMessages(updatedMessages);
 
     const messageText = inputValue; // Сохраняем текст до очистки
@@ -105,14 +99,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
         timestamp: new Date(),
       };
 
-      console.log('🤖 Добавляем ответ агента:', assistantMessage);
-      console.log('🤖 Текущие сообщения перед добавлением:', messages);
-
-      setMessages((prev) => {
-        const newMessages = [...prev, assistantMessage];
-        console.log('🤖 Новый список сообщений:', newMessages);
-        return newMessages;
-      });
+      setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
       console.error('Failed to send message:', error);
 

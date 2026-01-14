@@ -11,7 +11,7 @@ interface ChatWidgetProps {
 export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) => {
   // Используем useLocalStorage для сохранения сообщений между перезагрузками
   const storageKey = `siteai-chat-messages-${siteId}`;
-  const [messages, setMessages, clearMessages] = useLocalStorage<ChatMessage[]>(storageKey, []);
+  const [messages, setMessages] = useLocalStorage<ChatMessage[]>(storageKey, []);
 
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);

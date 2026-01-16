@@ -776,17 +776,6 @@
   margin: 0 auto;
 }
 
-.tours-advantages-cta .tours-primary-cta {
-  background: white;
-  color: #667eea;
-  width: 100%;
-}
-
-.tours-advantages-cta .tours-primary-cta:hover {
-  background: #f8f9fa;
-  transform: scale(1.05);
-}
-
 /* ========================================
    HOW IT WORKS SECTION (Updated)
    Как это работает - обновлённые стили

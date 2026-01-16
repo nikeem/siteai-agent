@@ -327,9 +327,9 @@ export function ToursLanding() {
               <div className="tours-step-icon">
                 <MessageCircle size={48} />
               </div>
-              <h3>Пройдите тест</h3>
-              <p>Ответьте на 5 вопросов о ваших предпочтениях в чате</p>
-              <p className="tours-step-detail">Укажите удобный способ связи: WhatsApp или Telegram</p>
+              <h3>Напишите в чат</h3>
+              <p>Расскажите менеджеру о ваших предпочтениях: даты, бюджет, тип отдыха</p>
+              <p className="tours-step-detail">Мы онлайн и готовы помочь!</p>
             </div>
 
             <div className="tours-step">

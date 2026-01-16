@@ -1,21 +1,23 @@
-import { ChatWidget } from '../components/Widget/ChatWidget';
+import { ChatWidget, type ChatWidgetRef } from '../components/Widget/ChatWidget';
 import './ToursLanding.css';
 import { Phone, MessageCircle } from 'lucide-react';
 import { Plane, Hotel, Car, Shield, MapPin, Calendar, CreditCard, Users, Send } from 'lucide-react';
+import { useRef } from 'react';
 
 export function ToursLanding() {
+  const chatWidgetRef = useRef<ChatWidgetRef>(null);
+
   const scrollToChat = (message?: string) => {
     const chatWidget = document.querySelector('.siteai-chat-container');
     if (chatWidget) {
       chatWidget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      // Фокус на поле ввода после скролла
+      // Устанавливаем сообщение и фокус после скролла
       setTimeout(() => {
-        const textarea = document.querySelector('.siteai-textarea') as HTMLTextAreaElement;
-        if (textarea) {
-          textarea.focus();
-          if (message) {
-            textarea.value = message;
-          }
+        if (message && chatWidgetRef.current) {
+          chatWidgetRef.current.setInputMessage(message);
+        }
+        if (chatWidgetRef.current) {
+          chatWidgetRef.current.focusInput();
         }
       }, 800);
     }
@@ -69,7 +71,7 @@ export function ToursLanding() {
           <div className="tours-hero-text">
             <h1>Раннее бронирование туров в Турцию на 2026 год со скидками до 50%</h1>
             <p className="tours-hero-subtitle">Предоплата 20%, остальное - за 20 дней до вылета</p>
-            <p className="tours-hero-description">Пройдите короткий тест и получите персональную подборку за 5 минут</p>
+            <p className="tours-hero-description">Пишите в чат, мы онлайн! Сразу проконсультируем и подберем хорошие варианты!</p>
             <div className="tours-hero-features">
               <div className="tours-hero-feature">
                 <Plane size={18} />
@@ -84,36 +86,8 @@ export function ToursLanding() {
                 <span>Медицинская страховка</span>
               </div>
             </div>
-            <div className="tours-hero-cta">
-              <button
-                className="tours-primary-cta"
-                onClick={() => scrollToChat('Здравствуйте! Хочу подобрать тур в Турцию')}
-              >
-                Подобрать тур
-              </button>
-              <div className="tours-messengers">
-                <a
-                  href="https://wa.me/74951234567"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="tours-messenger-btn tours-whatsapp-btn"
-                >
-                  <MessageCircle size={20} />
-                  <span>WhatsApp</span>
-                </a>
-                <a
-                  href="https://t.me/+74951234567"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="tours-messenger-btn tours-telegram-btn"
-                >
-                  <Send size={20} />
-                  <span>Telegram</span>
-                </a>
-              </div>
-            </div>
           </div>
-          <ChatWidget siteId="tours_turkey" />
+          <ChatWidget ref={chatWidgetRef} siteId="tours_turkey" />
         </div>
       </section>
 
@@ -182,7 +156,7 @@ export function ToursLanding() {
                 <div className="tours-resort-price">от 160 000 ₽ <span>за 7 ночей на двоих</span></div>
                 <button
                   className="tours-resort-button"
-                  onClick={() => scrollToChat('Здравствуйте! Интересую туром в Белек')}
+                  onClick={() => scrollToChat('Здравствуйте! Интересуюсь туром в Белек')}
                 >
                   Подобрать тур в Белек
                 </button>
@@ -199,7 +173,7 @@ export function ToursLanding() {
                 <div className="tours-resort-price">от 145 000 ₽ <span>за 7 ночей на двоих</span></div>
                 <button
                   className="tours-resort-button"
-                  onClick={() => scrollToChat('Здравствуйте! Интересую туром в Аланию')}
+                  onClick={() => scrollToChat('Здравствуйте! Интересуюсь туром в Аланию')}
                 >
                   Подобрать тур в Аланию
                 </button>
@@ -216,7 +190,7 @@ export function ToursLanding() {
                 <div className="tours-resort-price">от 140 000 ₽ <span>за 7 ночей на двоих</span></div>
                 <button
                   className="tours-resort-button"
-                  onClick={() => scrollToChat('Здравствуйте! Интересую туром в Анталью')}
+                  onClick={() => scrollToChat('Здравствуйте! Интересуюсь туром в Анталью')}
                 >
                   Подобрать тур в Анталью
                 </button>
@@ -233,7 +207,7 @@ export function ToursLanding() {
                 <div className="tours-resort-price">от 148 000 ₽ <span>за 7 ночей на двоих</span></div>
                 <button
                   className="tours-resort-button"
-                  onClick={() => scrollToChat('Здравствуйте! Интересую туром в Сиде')}
+                  onClick={() => scrollToChat('Здравствуйте! Интересуюсь туром в Сиде')}
                 >
                   Подобрать тур в Сиде
                 </button>
@@ -250,7 +224,7 @@ export function ToursLanding() {
                 <div className="tours-resort-price">от 155 000 ₽ <span>за 7 ночей на двоих</span></div>
                 <button
                   className="tours-resort-button"
-                  onClick={() => scrollToChat('Здравствуйте! Интересую туром в Бодрум')}
+                  onClick={() => scrollToChat('Здравствуйте! Интересуюсь туром в Бодрум')}
                 >
                   Подобрать тур в Бодрум
                 </button>
@@ -267,7 +241,7 @@ export function ToursLanding() {
                 <div className="tours-resort-price">от 150 000 ₽ <span>за 7 ночей на двоих</span></div>
                 <button
                   className="tours-resort-button"
-                  onClick={() => scrollToChat('Здравствуйте! Интересую туром в Кемер')}
+                  onClick={() => scrollToChat('Здравствуйте! Интересуюсь туром в Кемер')}
                 >
                   Подобрать тур в Кемер
                 </button>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 import type { ChatMessage, AgentSettings } from '../../types';
 import { apiService } from '../../services/api';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
@@ -8,7 +8,12 @@ interface ChatWidgetProps {
   siteId?: string;
 }
 
-export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) => {
+export interface ChatWidgetRef {
+  setInputMessage: (message: string) => void;
+  focusInput: () => void;
+}
+
+export const ChatWidget = forwardRef<ChatWidgetRef, ChatWidgetProps>(({ siteId = 'default' }, ref) => {
   // Используем useLocalStorage для сохранения сообщений между перезагрузками
   const storageKey = `siteai-chat-messages-${siteId}`;
   const [messages, setMessages] = useLocalStorage<ChatMessage[]>(storageKey, []);
@@ -19,6 +24,18 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+
+  // Экспонируем методы для родительского компонента
+  useImperativeHandle(ref, () => ({
+    setInputMessage: (message: string) => {
+      setInputValue(message);
+    },
+    focusInput: () => {
+      if (textareaRef.current) {
+        textareaRef.current.focus();
+      }
+    }
+  }));
 
   // Загрузка настроек при монтировании
   useEffect(() => {
@@ -211,4 +228,6 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
       </div>
     </div>
   );
-};
+});
+
+ChatWidget.displayName = 'ChatWidget';

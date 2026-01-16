@@ -36,8 +36,8 @@ export function ToursLanding() {
         <div className="tours-hero-overlay"></div>
         <div className="tours-hero-content">
           <div className="tours-hero-text">
-            <h1>Туры в Турцию</h1>
-            <p>Получите персональную подборку туров за 2 минуты. Ответьте AI-ассистенту на несколько вопросов</p>
+            <h1>Раннее бронирование туров в Турцию на 2026 год со скидками до 50%</h1>
+            <p>Предоплата 20%, остальное - за 20 дней до вылета</p>
             <div className="tours-hero-features">
               <div className="tours-hero-feature">
                 <Plane size={18} />
@@ -163,8 +163,8 @@ export function ToursLanding() {
               <div className="tours-step-icon">
                 <MessageCircle size={48} />
               </div>
-              <h3>Ответьте ассистенту</h3>
-              <p>Расскажите о ваших предпочтениях: dates, бюджет, тип отдыха</p>
+              <h3>Ответьте на вопросы</h3>
+              <p>Расскажите о ваших предпочтениях: даты, бюджет, тип отдыха</p>
             </div>
 
             <div className="tours-step">
@@ -173,7 +173,7 @@ export function ToursLanding() {
                 <Calendar size={48} />
               </div>
               <h3>Получите подборку</h3>
-              <p>AI подберет лучшие варианты под ваши требования</p>
+              <p>Мы подберем лучшие варианты под ваши требования</p>
             </div>
 
             <div className="tours-step">

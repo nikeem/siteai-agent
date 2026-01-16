@@ -7,8 +7,7 @@
 
 /* ========== HEADER ========== */
 .tours-header {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 1000;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -459,8 +458,62 @@
 
 @media (max-width: 768px) {
   .tours-header-container {
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .tours-logo-section {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .tours-logo h1 {
+    font-size: 18px;
+  }
+
+  .tours-proof-text {
+    font-size: 10px;
+    display: none;
+  }
+
+  .tours-header-contacts {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .tours-phone,
+  .tours-whatsapp,
+  .tours-telegram {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .tours-phone span,
+  .tours-whatsapp span,
+  .tours-telegram span {
+    display: none;
+  }
+
+  .tours-hero-text h1 {
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .tours-hero-subtitle {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .tours-hero-description {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .tours-hero-features {
+    display: none;
   }
 
   .tours-destinations h2,
@@ -486,11 +539,11 @@
 
 @media (max-width: 480px) {
   .tours-hero-text h1 {
-    font-size: 32px;
+    font-size: 24px;
   }
 
   .tours-hero-text p {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .tours-destinations,

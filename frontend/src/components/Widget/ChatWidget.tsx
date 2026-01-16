@@ -208,9 +208,6 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
             </svg>
           </button>
         </div>
-        <div className="siteai-input-footer">
-          <p>Во славу Кириллу</p>
-        </div>
       </div>
     </div>
   );

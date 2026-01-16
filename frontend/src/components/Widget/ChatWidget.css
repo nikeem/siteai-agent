@@ -26,8 +26,8 @@
 /* Main Chat Container */
 .siteai-chat-container {
   width: 100%;
-  max-width: 550px;
-  height: 700px;
+  max-width: 495px;
+  height: 630px;
   background:
     url('/chat-background.jpg') center / 100% auto no-repeat,
     linear-gradient(135deg, #1a1a1a 0%, #141414 100%);
@@ -331,13 +331,62 @@
 /* Responsive Design */
 @media (max-width: 1200px) {
   .siteai-chat-container {
-    max-width: 500px;
-    height: 650px;
+    max-width: 450px;
+    height: 580px;
   }
 }
 
-/* Mobile: Telegram-style full screen chat */
+/* ========================================
+   MOBILE STYLES (max-width: 768px)
+   ========================================
+
+   ВАРИАНТ 1 (АКТИВНЫЙ): Компактный чат с отступами
+   - Чат остаётся по центру с отступами от краёв
+   - Размеры адаптируются, но не на весь экран
+   - Удобен для просмотра контента страницы вокруг чата
+
+   ВАРИАНТ 2 (ЗАКОММЕНТИРОВАН): Full-screen чат в стиле Telegram
+   - Чат занимает весь экран (position: fixed, top/left/right/bottom: 0)
+   - Убирается border-radius и отступы
+   - Имитация нативного мессенджера
+
+   ПЕРЕКЛЮЧЕНИЕ: Закомментируй ВАРИАНТ 1 и раскомментируй ВАРИАНТ 2
+   ======================================== */
+
 @media (max-width: 768px) {
+  /* === ВАРИАНТ 1: Компактный чат (АКТИВНЫЙ) === */
+  .siteai-chat-container {
+    max-width: 90vw;
+    height: 70vh;
+    margin: 0 auto;
+  }
+
+  .siteai-chat-header {
+    padding: 16px 20px;
+  }
+
+  .siteai-header-content {
+    gap: 10px;
+  }
+
+  .siteai-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .siteai-header-info h3 {
+    font-size: 18px;
+  }
+
+  .siteai-chat-messages {
+    padding: 16px;
+  }
+
+  .siteai-chat-input-container {
+    padding: 16px 20px 20px;
+  }
+
+  /* === ВАРИАНТ 2: Full-screen чат (ЗАКОММЕНТИРОВАН) ===
   .siteai-chat-container {
     position: fixed;
     top: 0;
@@ -353,10 +402,6 @@
     border: none;
     box-shadow: none;
     margin: 0;
-  }
-
-  /* Фон в стиле Telegram с паттерном */
-  .siteai-chat-container {
     background:
       url('/chat-background.jpg') center / cover no-repeat,
       #1a1a1a;
@@ -369,7 +414,6 @@
     border-top: none;
   }
 
-  /* Telegram-style header for mobile: name centered, avatar on right */
   .siteai-header-content {
     justify-content: center;
     position: relative;
@@ -386,7 +430,6 @@
     text-align: center;
   }
 
-  /* Show online status below name */
   .siteai-status {
     display: flex;
     font-size: 12px;
@@ -395,7 +438,6 @@
     margin-top: 2px;
   }
 
-  /* User messages aligned to right like Telegram */
   .siteai-message-user {
     align-items: flex-end;
   }
@@ -464,6 +506,7 @@
   .siteai-input-footer {
     padding-top: 8px;
   }
+  === КОНЕЦ ВАРИАНТ 2 === */
 }
 
 @media (max-width: 480px) {

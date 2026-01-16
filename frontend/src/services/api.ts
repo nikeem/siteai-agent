@@ -27,19 +27,20 @@ class ApiService {
   }
 
   // Отправка сообщения
-  async sendMessage(message: string, conversationHistory: ChatMessage[]): Promise<ChatResponse> {
-    return this.request<ChatResponse>('/chat', {
+  async sendMessage(message: string, conversationHistory: ChatMessage[], siteId: string = 'default'): Promise<ChatResponse> {
+    return this.request<ChatResponse>(`/chat?site_id=${siteId}`, {
       method: 'POST',
       body: JSON.stringify({
         message,
         history: conversationHistory,
+        site_id: siteId,
       }),
     });
   }
 
   // Получение настроек агента
-  async getSettings(): Promise<AgentSettings> {
-    return this.request<AgentSettings>('/settings');
+  async getSettings(siteId: string = 'default'): Promise<AgentSettings> {
+    return this.request<AgentSettings>(`/settings?site_id=${siteId}`);
   }
 
   // Обновление настроек агента

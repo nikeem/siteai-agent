@@ -24,14 +24,22 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
   useEffect(() => {
     const loadSettings = async () => {
       try {
-        const agentSettings = await apiService.getSettings();
+        // Проверяем, был ли предыдущий siteId другим
+        const previousSiteId = localStorage.getItem('siteai-current-site-id');
+
+        // Очищаем localStorage для текущего siteId при переключении
+        if (previousSiteId && previousSiteId !== siteId) {
+          localStorage.removeItem(storageKey);
+        }
+
+        const agentSettings = await apiService.getSettings(siteId);
         setSettings(agentSettings);
 
-        // Проверяем localStorage напрямую, не полагаясь на состояние
-        const hasStoredMessages = localStorage.getItem(storageKey);
+        // Сохраняем текущий siteId
+        localStorage.setItem('siteai-current-site-id', siteId);
 
-        // Добавляем приветственное сообщение ТОЛЬКО если в localStorage нет сообщений
-        if (agentSettings.welcomeMessage && !hasStoredMessages) {
+        // Добавляем приветственное сообщение, если сообщений нет или они пустые
+        if (agentSettings.welcomeMessage && messages.length === 0) {
           setMessages([
             {
               id: 'welcome',
@@ -90,7 +98,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ siteId = 'default' }) =>
 
     try {
       // Передаём обновлённый список сообщений
-      const response = await apiService.sendMessage(messageText, updatedMessages);
+      const response = await apiService.sendMessage(messageText, updatedMessages, siteId);
 
       const assistantMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),

@@ -489,6 +489,229 @@ export function ToursLanding() {
         </div>
       </section>
 
+      {/* Наши эксперты по Турции */}
+      <section className="tours-experts-section">
+        <div className="tours-container">
+          <h2 className="tours-section-title">Познакомьтесь с нашими экспертами по Турции</h2>
+          <p className="tours-section-subtitle">Наши менеджеры специализируются на турецком направлении и знают все нюансы отдыха</p>
+          <div className="tours-experts-grid">
+            <div className="tours-expert-card">
+              <div className="tours-expert-avatar" style={{
+                backgroundImage: 'url(/images/tours/expert-1.jpg)'
+              }}></div>
+              <div className="tours-expert-content">
+                <h3>Александр</h3>
+                <p className="tours-expert-title">Эксперт по раннему бронированию Турции</p>
+                <p className="tours-expert-phone">📞 +7 (495) 123-45-67</p>
+                <p className="tours-expert-experience">8 лет в туризме, 500+ организованных туров в Турцию</p>
+                <p className="tours-expert-specialization">Специализируется: Белек, Алания</p>
+              </div>
+            </div>
+
+            <div className="tours-expert-card">
+              <div className="tours-expert-avatar" style={{
+                backgroundImage: 'url(/images/tours/expert-2.jpg)'
+              }}></div>
+              <div className="tours-expert-content">
+                <h3>Елена</h3>
+                <p className="tours-expert-title">Специалист по семейному отдыху</p>
+                <p className="tours-expert-phone">📞 +7 (495) 123-45-68</p>
+                <p className="tours-expert-experience">6 лет в туризме, 300+ семей отправлено на отдых</p>
+                <p className="tours-expert-specialization">Специализируется: Сиде, Кемер</p>
+              </div>
+            </div>
+
+            <div className="tours-expert-card">
+              <div className="tours-expert-avatar" style={{
+                backgroundImage: 'url(/images/tours/expert-3.jpg)'
+              }}></div>
+              <div className="tours-expert-content">
+                <h3>Михаил</h3>
+                <p className="tours-expert-title">Эксперт по элитному отдыху</p>
+                <p className="tours-expert-phone">📞 +7 (495) 123-45-69</p>
+                <p className="tours-expert-experience">10 лет в туризме, эксперт по отелям 5*</p>
+                <p className="tours-expert-specialization">Специализируется: Белек, Бодрум</p>
+              </div>
+            </div>
+
+            <div className="tours-expert-card">
+              <div className="tours-expert-avatar" style={{
+                backgroundImage: 'url(/images/tours/expert-4.jpg)'
+              }}></div>
+              <div className="tours-expert-content">
+                <h3>Ольга</h3>
+                <p className="tours-expert-title">Менеджер по активному отдыху</p>
+                <p className="tours-expert-phone">📞 +7 (495) 123-45-70</p>
+                <p className="tours-expert-experience">5 лет в туризме, знает все об аквапарках</p>
+                <p className="tours-expert-specialization">Специализируется: Алания, Анталья</p>
+              </div>
+            </div>
+
+            <div className="tours-expert-card">
+              <div className="tours-expert-avatar" style={{
+                backgroundImage: 'url(/images/tours/expert-5.jpg)'
+              }}></div>
+              <div className="tours-expert-content">
+                <h3>Дмитрий</h3>
+                <p className="tours-expert-title">Эксперт по гольф-турам</p>
+                <p className="tours-expert-phone">📞 +7 (495) 123-45-71</p>
+                <p className="tours-expert-experience">7 лет в туризме, гольфист с 10-летним стажем</p>
+                <p className="tours-expert-specialization">Специализируется: Белек (гольф)</p>
+              </div>
+            </div>
+
+            <div className="tours-expert-card">
+              <div className="tours-expert-avatar" style={{
+                backgroundImage: 'url(/images/tours/expert-6.jpg)'
+              }}></div>
+              <div className="tours-expert-content">
+                <h3>Анна</h3>
+                <p className="tours-expert-title">Специалист по романтическому отдыху</p>
+                <p className="tours-expert-phone">📞 +7 (495) 123-45-72</p>
+                <p className="tours-expert-experience">4 года в туризме, эксперт для молодых пар</p>
+                <p className="tours-expert-specialization">Специализируется: Бодрум, Кемер</p>
+              </div>
+            </div>
+          </div>
+          <div className="tours-experts-cta">
+            <button
+              className="tours-primary-cta"
+              onClick={() => scrollToChat('Здравствуйте! Хочу получить консультацию по турам в Турцию')}
+            >
+              Получить консультацию эксперта
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Отзывы туристов */}
+      <section className="tours-reviews-section">
+        <div className="tours-container">
+          <h2 className="tours-section-title">Что говорят наши туристы</h2>
+          <p className="tours-section-subtitle">Реальные отзывы с Яндекс Карт</p>
+          <div className="tours-reviews-grid">
+            <div className="tours-review-card">
+              <div className="tours-review-rating">⭐⭐⭐⭐⭐ 5/5</div>
+              <p className="tours-review-text">"Отдыхали в Белеке в августе 2025. Отель Rixos Premium превзошел все ожидания! Дети в восторге от анимации и детского клуба, а мы наслаждались спа и гольфом. Спасибо Александру за отличную подборку — все было организовано на высшем уровне!"</p>
+              <p className="tours-review-author">— Семья Ивановых, Москва, Белек (август 2025)</p>
+            </div>
+
+            <div className="tours-review-card">
+              <div className="tours-review-rating">⭐⭐⭐⭐⭐ 5/5</div>
+              <p className="tours-review-text">"Забронировали тур в Аланию через раннее бронирование — сэкономили более 40%! Отель Liberty Hotels Lara просто супер: огромный аквапарк, вкусная еда, дружелюбный персонал. Обязательно воспользуемся вашим сервисом еще раз!"</p>
+              <p className="tours-review-author">— Ольга и Сергей, Санкт-Петербург, Алания (июль 2025)</p>
+            </div>
+
+            <div className="tours-review-card">
+              <div className="tours-review-rating">⭐⭐⭐⭐⭐ 5/5</div>
+              <p className="tours-review-text">"Первый раз в Турции и остались в полном восторге! Побывали в Анталье и Сиде, посмотрели древние руины, отдохнули на прекрасных пляжах. Менеджер помог подобрать идеальный отель для нас с ребенком. Рекомендуем Pegas Touristik!"</p>
+              <p className="tours-review-author">— Мария Петрова, Казань, Анталья (июнь 2025)</p>
+            </div>
+          </div>
+          <div className="tours-reviews-cta">
+            <button
+              className="tours-secondary-cta"
+              onClick={() => scrollToChat('Здравствуйте! Хочу оставить отзыв или задать вопрос')}
+            >
+              Оставить отзыв или задать вопрос
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ - Часто задаваемые вопросы */}
+      <section className="tours-faq-section">
+        <div className="tours-container">
+          <h2 className="tours-section-title">Часто задаваемые вопросы</h2>
+          <p className="tours-section-subtitle">Ответы на популярные вопросы о раннем бронировании</p>
+          <div className="tours-faq-list">
+            <details className="tours-faq-item">
+              <summary>📌 Что такое раннее бронирование?</summary>
+              <p>Раннее бронирование — это возможность забронировать тур заранее (за 6-12 месяцев) со значительной скидкой. При этом вы фиксируете цену и гарантируете места в лучших отелях.</p>
+            </details>
+
+            <details className="tours-faq-item">
+              <summary>📌 Как получить скидку 30-50%?</summary>
+              <p>Скидка формируется за счёт advance payment от туроператора. При бронировании сейчас (до сезона) цены на 30-50% ниже, чем при покупке за 2-3 недели до вылета.</p>
+            </details>
+
+            <details className="tours-faq-item">
+              <summary>📌 Что значит "фиксированная цена"?</summary>
+              <p>При раннем бронировании цена тура фиксируется на момент бронирования. Даже если курс валют или цены вырастут к сезону, для вас цена остаётся неизменной.</p>
+            </details>
+
+            <details className="tours-faq-item">
+              <summary>📌 Какие документы нужны для поездки в Турцию?</summary>
+              <p>Для граждан РФ загранпаспорт (срок действия не менее 6 месяцев с момента вылета). Виза не требуется. Для детей необходимо свидетельство о рождении или загранпаспорт.</p>
+            </details>
+
+            <details className="tours-faq-item">
+              <summary>📌 Можно ли оплатить тур в рассрочку?</summary>
+              <p>Да! При раннем бронировании вы платите только 20% сейчас, а остаток — за 20 дней до вылета. Это позволяет распределить расходы на несколько месяцев.</p>
+            </details>
+
+            <details className="tours-faq-item">
+              <summary>📌 Что если не найду подходящий вариант?</summary>
+              <p>Наши эксперты подберут индивидуальные варианты под ваши требования. Мы работаем с более чем 100 отелями Турции и найдём оптимальный вариант именно для вас.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      {/* Офисы и контакты */}
+      <section className="tours-offices-section">
+        <div className="tours-container">
+          <h2 className="tours-section-title">Приезжайте в офис или напишите нам</h2>
+          <p className="tours-section-subtitle">Всегда рады见到 вам в нашем офисе или онлайн</p>
+          <div className="tours-offices-content">
+            <div className="tours-offices-info">
+              <h3>Контакты</h3>
+              <p className="tours-office-address"><MapPin size={20} style={{display: 'inline', verticalAlign: 'middle', marginRight: '8px'}} /> Москва, ул. Арбат, д.54</p>
+              <p className="tours-office-hours">🕐 Ежедневно с 10:00 до 22:00</p>
+              <p className="tours-office-phone"><Phone size={20} style={{display: 'inline', verticalAlign: 'middle', marginRight: '8px'}} /> +7 (495) 123-45-67</p>
+              <p className="tours-office-email">✉️ info@pegastouristik.ru</p>
+              <div className="tours-office-messengers">
+                <a
+                  href="https://wa.me/74951234567"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tours-office-messenger"
+                >
+                  <MessageCircle size={24} />
+                  <span>WhatsApp</span>
+                </a>
+                <a
+                  href="https://t.me/+74951234567"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tours-office-messenger"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                  </svg>
+                  <span>Telegram</span>
+                </a>
+              </div>
+            </div>
+            <div className="tours-offices-map">
+              <div className="tours-office-placeholder">
+                <MapPin size={48} />
+                <p>Карта офиса</p>
+                <small>Москва, ул. Арбат, д.54</small>
+              </div>
+            </div>
+          </div>
+          <div className="tours-offices-cta">
+            <button
+              className="tours-primary-cta"
+              onClick={() => scrollToChat('Здравствуйте! Хочу получить консультацию')}
+            >
+              Написать в мессенджер
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="tours-footer">
         <div className="tours-footer-content">
